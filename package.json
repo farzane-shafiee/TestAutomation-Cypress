@@ -1,0 +1,23 @@
+{
+  "name": "testautomation-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farzane-shafiee/TestAutomation-Cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farzane-shafiee/TestAutomation-Cypress/issues"
+  },
+  "homepage": "https://github.com/farzane-shafiee/TestAutomation-Cypress#readme",
+  "dependencies": {
+    "cypress": "^10.6.0"
+  }
+}
