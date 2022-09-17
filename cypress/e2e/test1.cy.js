@@ -15,4 +15,12 @@ describe('Suite 1', function (){
     cy.contains('تایید').click({force: true})
     cy.get('button[data-test="flightSearchBtn"]').last().click({force: true})
   })
+
+  it.only('should pass api login', function () {
+    cy.request("POST","https://apidemo.flytoday.ir/User/CheckLogin", {username: '09193619468'})
+        .then((data) => {
+          console.log(data)
+          expect(data.status).equals(200)
+        })
+  });
 })
