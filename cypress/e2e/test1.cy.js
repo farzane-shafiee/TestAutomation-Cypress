@@ -1,7 +1,7 @@
 /// <reference type = "cypress"/>
 
 describe('Suite 1', function (){
-  it('flytoday', function () {
+  it.only('flytoday', function () {
     cy.visit("https://betademo.flytoday.ir").wait(2000)
 
     cy.get('button[data-test="originSelectBox"]').last().click({force: true})
@@ -14,9 +14,22 @@ describe('Suite 1', function (){
         .children('button[data-test="datePickerDay"]').click({force: true})
     cy.contains('تایید').click({force: true})
     cy.get('button[data-test="flightSearchBtn"]').last().click({force: true})
+    cy.wait(25000)
+    cy.get('[title="ایران ایر تور"][type=checkbox]').check({force: true}).wait(2000)
+    cy.get('svg[class*=visible]').then(el => {
+      expect(el).to.be.visible
+    })
+    cy.get('[title="ایران ایر تور"][type=checkbox]').parent().parent().parent().parent()
+        .children('p[class*=checkboxes-filter_countText]').then(expected_result => {
+      cy.get('p[class*=filters-header_resultText__H_8rL]').then(actual_result => {
+        expect(expected_result.text()).equals(actual_result.text())
+      })
+    })
+    cy.get('div[data-test="list-filter-dialog"]').should('have.length', 1)
+    cy.get('div[data-test="show-filter-dialog"]').should('have.text', 'ایران ایر تور')
   })
 
-  it.only('should pass api login', function () {
+  it('should pass api login', function () {
     cy.request("POST","https://apidemo.flytoday.ir/User/CheckLogin", {username: '09193619468'})
         .then((data) => {
           console.log(data)
