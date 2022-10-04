@@ -1,7 +1,6 @@
 {
   "name": "testautomation-cypress",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +16,10 @@
     "url": "https://github.com/farzane-shafiee/TestAutomation-Cypress/issues"
   },
   "homepage": "https://github.com/farzane-shafiee/TestAutomation-Cypress#readme",
-  "dependencies": {
-    "cypress": "^10.6.0"
+  "description": "",
+  "devDependencies": {
+    "@cypress/snapshot": "^2.1.7",
+    "cypress": "^10.9.0",
+    "cypress-xpath": "^2.0.1"
   }
 }

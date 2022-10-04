@@ -1,7 +1,7 @@
 /// <reference type = "cypress"/>
 
 describe('Suite 1', function (){
-  it('flytoday', function () {
+  it.only('flytoday', function () {
     cy.visit("https://betademo.flytoday.ir").wait(2000)
 
     cy.get('button[data-test="originSelectBox"]').last().click({force: true})
@@ -48,7 +48,7 @@ describe('Suite 1', function (){
   });
 
 })
-it.only('should ', function () {
+it('should ', function () {
   fetch('https://apidemo.flytoday.ir/User/CheckLogin').then((resp) => resp.json())
       .then((data) => {
         console.log("log is : " + data)
