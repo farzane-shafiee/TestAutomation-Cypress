@@ -9,7 +9,7 @@ describe("Two different URLs",  function () {
         cy.url().should('include', '/login').wait(1000)
     });
 
-    it("Opens URLs", () => {
+    it.only("Opens URLs", () => {
         cy.visit('http://172.30.5.12:1080')
         cy.reload().wait(2000)
         cy.get('tbody tr td').eq(2).then(element => {
