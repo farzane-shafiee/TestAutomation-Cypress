@@ -2,7 +2,8 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    // defaultCommandTimeout: 4000,
+    baseUrl: "https://demo.digikalajet.com/",
+    defaultCommandTimeout: 4000,
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     screenshotOnRunFailure: false,

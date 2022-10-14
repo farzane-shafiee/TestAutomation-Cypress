@@ -6,8 +6,79 @@
 // For more comprehensive examples of custom
 // commands please read more here:
 // https://on.cypress.io/custom-commands
+
 // ***********************************************
-//
+//valid username and password
+Cypress.Commands.add('login_valid_username_password', (username, password) => {
+    cy.session([username, password], () => {
+        cy.visit("user/address");
+        cy.contains('button','ورود / عضویت').click()
+        cy.get('input[name="phone"]').type(username);
+        cy.contains('button', "ادامه").click();
+        cy.url().should('include', '/login').wait(1000)
+        cy.get('input[data-testid="USER_LOGIN_PHONE_VERIFICATION_INPUT"]').click()
+            .type(`${password}{enter}`).wait(2000);
+        cy.url().should('eq', 'https://demo.digikalajet.com/')
+    });
+});
+//******************************************************************************
+//insert without username
+Cypress.Commands.add('login_insert_without_username', () => {
+    cy.visit("user/address");
+    cy.contains('button','ورود / عضویت').click()
+    cy.contains('button', "ادامه").click();
+    cy.contains('لطفا شماره تلفن خود را به طور صحیح وارد کنید')
+    cy.url().should('eq', 'https://demo.digikalajet.com/user/login')
+});
+//*******************************************************************************
+//insert wrong username
+Cypress.Commands.add('login_insert_wrong_username', (username) => {
+    cy.visit("user/address");
+    cy.contains('button','ورود / عضویت').click()
+    cy.get('input[name="phone"]').type(username);
+    cy.contains('button', "ادامه").click();
+    cy.contains('لطفا شماره تلفن خود را به طور صحیح وارد کنید')
+    cy.url().should('eq', 'https://demo.digikalajet.com/user/login')
+});
+//*********************************************************************************
+//insert wrong password
+Cypress.Commands.add('login_insert_wrong_password', (username,password) => {
+    cy.visit("user/address");
+    cy.contains('button','ورود / عضویت').click()
+    cy.get('input[name="phone"]').type(username);
+    cy.contains('button', "ادامه").click();
+    cy.url().should('include', '/login').wait(1000)
+    cy.get('input[data-testid="USER_LOGIN_PHONE_VERIFICATION_INPUT"]').click()
+        .type(`${password}{enter}`);
+    cy.contains('کد وارد شده صحیح نیست یا مدت اعتبار کد تمام شده‌است.');
+    cy.url().should('eq', 'https://demo.digikalajet.com/user/login')
+});
+//*********************************************************************************
+//insert without password
+Cypress.Commands.add('login_insert_without_password', (username) => {
+    cy.visit("user/address");
+    cy.contains('button','ورود / عضویت').click()
+    cy.get('input[name="phone"]').type(username);
+    cy.contains('button', "ادامه").click();
+    cy.url().should('include', '/login').wait(1000)
+    cy.contains('button', "ادامه").click();
+    cy.contains('ورودی اشتباه است.');
+    cy.url().should('eq', 'https://demo.digikalajet.com/user/login')
+});
+//*********************************************************************************
+// test api
+Cypress.Commands.add('login_api', (username, password) => {
+    cy.session([username, password], () => {
+        cy.request({
+            method: "POST",
+            url: "https://demo-dknow-api.digikala.com/user/login-register/",
+            body: {
+                username: username ?? "09193619468",
+                password: password ?? "111111",
+            },
+        })
+    })
+})
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
