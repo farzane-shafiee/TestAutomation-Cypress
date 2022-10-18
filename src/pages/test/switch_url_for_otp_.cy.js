@@ -1,4 +1,4 @@
-/// <reference type = "cypress"/>
+/// <reference type = "src"/>
 
 
 describe("Two different URLs",  function () {

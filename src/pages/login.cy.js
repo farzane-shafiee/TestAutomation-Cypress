@@ -1,4 +1,4 @@
-/// <reference type = "cypress"/>
+/// <reference type = "src"/>
 
 describe('Suite login', function (){
     it('Api test login', function () {

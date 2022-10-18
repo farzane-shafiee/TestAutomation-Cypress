@@ -10,6 +10,9 @@
 // ***********************************************
 //valid username and password
 Cypress.Commands.add('login_valid_username_password', (username, password) => {
+    username = username || Cypress.env('username');
+    password = password || Cypress.env('password');
+
     cy.session([username, password], () => {
         cy.visit("user/address");
         cy.contains('button','ورود / عضویت').click()
@@ -68,17 +71,19 @@ Cypress.Commands.add('login_insert_without_password', (username) => {
 //*********************************************************************************
 // test api
 Cypress.Commands.add('login_api', (username, password) => {
+    username = username || Cypress.env('username');
+    password = password || Cypress.env('password');
+
     cy.session([username, password], () => {
         cy.request({
             method: "POST",
-            url: "https://demo-dknow-api.digikala.com/user/login-register/",
-            body: {
-                username: username ?? "09193619468",
-                password: password ?? "111111",
-            },
-        })
-    })
-})
+            url: `${Cypress.env('API_BASE')}/user/login-register/`,
+            body: { username, password },
+        }).then((response) => {
+            console.log('login response', response);
+        });
+    });
+});
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })

@@ -1,4 +1,4 @@
-/// <reference type = "cypress"/>
+/// <reference type = "src"/>
 
 describe('Suite 1', function (){
   it.only('flytoday', function () {
