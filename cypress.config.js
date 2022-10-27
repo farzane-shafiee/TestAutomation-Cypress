@@ -13,7 +13,7 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     screenshotOnRunFailure: false,
-    watchForFileChanges: true,
+    watchForFileChanges: false,
     videosFolder: 'src/videos',
     fixturesFolder: 'src/fixtures',
     downloadsFolder: 'src/downloads',

@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "src run",
-    "open": "src open",
-    "pretty:fix": "prettier --write \\\\\\\\\\\\\\\"src/**/*.{json,js}\\\\\\\\\\\\\\\"",
-    "lint:fix": "eslint --fix \\\\\\\\\\\\\\\"src/**/*.{json,js}\\\\\\\\\\\\\\\""
+    "run": "cypress run",
+    "open": "cypress open",
+    "run:production": "cypress run --config-file ./src/config/production.config.js",
+    "open:production": "cypress open --config-file ./src/config/production.config.js",
+    "run:development": "cypress run --config-file ./src/config/development.config.js",
+    "open:development": "cypress open --config-file ./src/config/development.config.js",
+    "pretty:fix": "prettier --write \"src/**/*.{json,js}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{json,js}\""
   },
   "repository": {
     "type": "git",
@@ -20,10 +23,13 @@
     "url": "https://github.com/farzane-shafiee/TestAutomation-Cypress/issues"
   },
   "homepage": "https://github.com/farzane-shafiee/TestAutomation-Cypress#readme",
-  "description": "",
+  "description": "DigikalaJet",
   "devDependencies": {
     "@cypress/snapshot": "^2.1.7",
     "cypress": "^10.9.0",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "eslint": "^8.25.0",
+    "husky": "^8.0.1",
+    "prettier": "2.7.1"
   }
 }
