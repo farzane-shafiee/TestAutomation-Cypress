@@ -1,5 +1,3 @@
-function getText(locator){
-    return cy.get(locator).then(attribute => {
-        attribute.text();
-    })
+export async function utility(locator){
+    cy.get(locator).invoke('text').as('Text');
 }

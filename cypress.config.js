@@ -9,7 +9,7 @@ const {
 module.exports = defineConfig({
   e2e: {
     baseUrl: BASE_DEMO_URL,
-    defaultCommandTimeout: 4000,
+    defaultCommandTimeout: 10000,
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     screenshotOnRunFailure: false,
