@@ -123,7 +123,7 @@ Cypress.Commands.add('assert_product_mode_mobile_tablet', () => {
     cy.get('[data-cro-id="payment_button"]').click() //دکمه تکمیل سفارش
 })
 //************************************************
-Cypress.Commands.add('payment', () => {
+Cypress.Commands.add('payment', (code) => {
 
     /** Close Basket and Payment.
      * Return: Show Factor. */
@@ -133,8 +133,21 @@ Cypress.Commands.add('payment', () => {
         cy.contains('div','ادامه').click()
     })
     cy.get('[data-value="5"] > .w-24').click()
-    cy.get('.grow-0-lg > .d-inline-block > .relative').click({force:true})
-    cy.contains('div', 'پیگیری سفارش').click({force:true})
+
+    cy.contains('کد تخفیف دارید؟').click()
+    cy.get('[name="code"]').click().type(code)
+    cy.get('button[class*="text-button-2 radius-md"]>div').eq(1).click()
+
+    cy.get('span[class*="color-hint-text-success"]').should('exist')
+    cy.get('i[class*="icon cube-content-edit"]').should('exist')
+
+    cy.getText('span[class="color-secondary-500 text-subtitle-strong"]').then((text) => {
+        cy.contains(text).should('not.be.null')
+
+    })
+
+    // cy.get('.grow-0-lg > .d-inline-block > .relative').click({force:true})
+    // cy.contains('div', 'پیگیری سفارش').click({force:true})
 });
 //*******************************************************************************
 Cypress.Commands.add('login_insert_invalid_username', (username) => {
@@ -279,57 +292,57 @@ Cypress.Commands.add('set_address_api', (address_id) => {
     });
 });
 //******************************************************************************
-Cypress.Commands.add('cart_close_limit', () => {
-    cy.fixture('FF_ViewAllActiveSites_20180503_102650').then((file) => {
+Cypress.Commands.add('cart_close_limit_and_shipping_fee', (limit) => {
+    // cy.fixture('FF_ViewAllActiveSites_20180503_102650').then((file) => {
         cy.request({
             method: "POST",
             url: 'https://demo-dknow-api.digikala.com/admin/shop/item/49/?_back=http://demo-dknow-api.digikala.com/admin/shop/?city%3D%26city_id%3D0%26crud_tab_id%3D%26district_id%3D0%26hash_id%3D%26id%3D%26merchant_id%255B0%255D%3D2%26name%3D%26nickname%3D%26radius%3D%26status%3D',
-            form: true,
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-            files: {
-                file: file
-            },
-            // body: {
-            //     merchant_id: "2",
-            //     name: "جت مارت | سبلان",
-            //     nickname: "فرزان فری",
-            //     subtitle: "",
-            //     owner_name: "حسام کریمی",
-            //     status: "active",
-            //     inactivation_reason_pending: "5",
-            //     inactivation_reason_inactive: "3",
-            //     inactivation_reason_vendor_issues: "1",
-            //     inactivation_reason_termination_of_contract: "10",
-            //     merchant_code: "86",
-            //     phone: "09332749480",
-            //     auto_call_phone: "",
-            //     delivery_provider: "digiexpress",
-            //     delivery_service_lvl: "",
-            //     address: "سبلان جنوبی،خیابان مدنی،محله ی نظام آباد،خیابان طیرانی،پلاک ۲۵",
-            //     district_id: "2676",
-            //     city_id: "1698",
-            //     state_id: "9",
-            //     shipping_fee: "",
-            //     shipping_fee_plan_id: "89",
-            //     order_volume_limit: "100",
-            //     preparation_time: "35",
-            //     cart_close_limit: limit,
-            //     service_radius: "7",
-            //     service_radius_critical: "2",
-            //     max_discount_percentage: "0",
-            //     product_min_stock: "",
-            //     background: "",
-            //     icon: "",
-            //     sort: "1",
-            //     delivery_badge: "under-45",
-            //     crud_tab_id: "main",
+            // form: true,
+            // headers: {
+            //     'content-type': 'multipart/form-data',
             // },
+            // files: {
+            //     file: file
+            // },
+            body: {
+                merchant_id: "2",
+                name: "جت مارت | سبلان",
+                nickname: "فرزان فری",
+                subtitle: "",
+                owner_name: "حسام کریمی",
+                status: "active",
+                inactivation_reason_pending: "5",
+                inactivation_reason_inactive: "3",
+                inactivation_reason_vendor_issues: "1",
+                inactivation_reason_termination_of_contract: "10",
+                merchant_code: "86",
+                phone: "09332749480",
+                auto_call_phone: "",
+                delivery_provider: "digiexpress",
+                delivery_service_lvl: "",
+                address: "سبلان جنوبی،خیابان مدنی،محله ی نظام آباد،خیابان طیرانی،پلاک ۲۵",
+                district_id: "2676",
+                city_id: "1698",
+                state_id: "9",
+                shipping_fee: "",
+                shipping_fee_plan_id: "88",
+                order_volume_limit: "100",
+                preparation_time: "35",
+                cart_close_limit: limit,
+                service_radius: "7",
+                service_radius_critical: "2",
+                max_discount_percentage: "0",
+                product_min_stock: "",
+                background: "",
+                icon: "",
+                sort: "1",
+                delivery_badge: "under-45",
+                crud_tab_id: "main",
+            },
         }).then((response) => {
             expect(response).property('status').to.equal(200);
         });
-    });
+    // });
 });
 //*********************************************************************************
 Cypress.Commands.add('select_shop_api', (shop_id) => {

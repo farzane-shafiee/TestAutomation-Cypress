@@ -2,7 +2,7 @@
 
 const sizes = ['iphone-6', 'ipad-2',[1920, 1080]]
 // before(size)
-describe("Submitting a new order", ()=> {
+describe("Submitting a new smook", ()=> {
     sizes.forEach((size) => {
         it(`open URL in ${size} size`,() => {
             if (Cypress._.isArray(size)){
