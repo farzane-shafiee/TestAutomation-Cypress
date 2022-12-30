@@ -9,7 +9,7 @@ describe("Submitting a new order", ()=> {
             if (Cypress._.isArray(size)) {
                 cy.viewport(size[0], size[1])
                 cy.login_valid_username_password('09150560098','111111');
-                cy.set_address();
+                cy.set_address_api('3241643');
                 cy.cart_close_limit(50000);
                 cy.select_supermarket();
                 cy.select_shop();
@@ -19,7 +19,7 @@ describe("Submitting a new order", ()=> {
             } else {
                 cy.viewport(size)
                 cy.login_valid_username_password('09150560098','111111');
-                cy.set_address();
+                cy.set_address_api('3241643');
                 cy.select_supermarket();
                 cy.select_shop();
                 cy.select_simple_product();

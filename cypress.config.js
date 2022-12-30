@@ -20,11 +20,25 @@ module.exports = defineConfig({
     screenshotsFolder: 'src/screenshots',
     specPattern: 'src/pages/**/*.cy.js',
     supportFile: 'src/support/index.js',
+
     env:{
       username: DKJET_USERNAME,
       password: DKJET_PASSWORD,
       API_BASE: BASE_API_DEMO_URL,
+      token: "",
+      user_id: "",
+      token_final: "",
+      address_id: "3241643",
+      shop_id: "113117599508",
+      product1: "",
+      product2: "",
+      cart_shipment_id: "",
+      cart_item_id: "",
+      product_id: "",
+      payable_price: "",
+
     },
+
     setupNodeEvents(on, config) {
       // implement node event listeners here
       let value

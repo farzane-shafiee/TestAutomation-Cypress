@@ -11,10 +11,10 @@ describe('Suite login', function (){
         cy.login_insert_without_username()
     });
     it('should show helper "insert correct username" and dont login', function () {
-        cy.login_insert_wrong_username('BlabBlabBlab')
+        cy.login_insert_invalid_username('BlabBlabBlab')
     });
     it('should show helper "insert correct password" and dont login', function () {
-        cy.login_insert_wrong_password('09193619468', 'qweqwe')
+        cy.login_insert_invalid_password('09193619468', 'qweqwe')
     });
     it('should show helper "insert password" and dont login', function () {
         cy.login_insert_without_password('09193619468')
