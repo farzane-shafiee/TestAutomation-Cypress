@@ -37,6 +37,10 @@ module.exports = defineConfig({
       product_id: "",
       payable_price: "",
 
+      total: "",
+      shipping_fee: "",
+      discount: "",
+
     },
 
     setupNodeEvents(on, config) {
